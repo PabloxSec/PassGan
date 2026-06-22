@@ -1,6 +1,6 @@
-# DeepPassGen 🚀
+# PassGan 🚀
 
-DeepPassGen is a **hybrid, high-performance password generation suite** that bridges state-of-the-art **Deep Learning (PyTorch)** with ultra-fast **Systems Programming (Rust)**. 
+PassGan is a **hybrid, high-performance password generation suite** that bridges state-of-the-art **Deep Learning (PyTorch)** with ultra-fast **Systems Programming (Rust)**. 
 
 By combining GPU-accelerated recurrent neural networks for sequence modeling with native Rust engines for statistical Markov chains, rule-based pattern generators, and high-speed I/O filtering, DeepPassGen offers a robust and comprehensive toolkit for security audits, password cracking research, and security training.
 
@@ -8,7 +8,7 @@ By combining GPU-accelerated recurrent neural networks for sequence modeling wit
 
 ## 🏗️ System Architecture
 
-DeepPassGen uses a dual-engine architecture designed to maximize hardware utilization:
+PassGan uses a dual-engine architecture designed to maximize hardware utilization:
 
 ```
                   ┌──────────────────────────────┐
@@ -65,7 +65,9 @@ Markov Chain generation is statistical, deterministic, and extremely fast. It mo
 1. The engine reads the training file line-by-line using buffered streams.
 2. It breaks passwords into character $n$-grams of length $N$ and counts how often a character $c$ follows each $n$-gram.
 3. It compiles these frequencies into a sparse transition matrix stored in memory:
-   $$\text{Transition}[\text{prefix}] \rightarrow \text{Vec}<(\text{next\_char}, \text{count})>$$
+  ```rust
+Transition[prefix] -> Vec<(next_char, count)>
+```
 4. The trained model is saved as a lightweight JSON file (`markov_model.json`).
 
 #### How Generation Works:
@@ -123,7 +125,7 @@ pip install -r requirements.txt
 
 ## 🚀 Execution Modes
 
-DeepPassGen supports two interface modes depending on how you run it:
+PassGan supports two interface modes depending on how you run it:
 
 ### 1. Interactive Terminal UI (TUI) Mode
 If run in a terminal (TTY) with no arguments, a colorful menu guides you through configuring files and parameters interactively:
